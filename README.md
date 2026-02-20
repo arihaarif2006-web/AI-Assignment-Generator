@@ -1,4 +1,4 @@
-<img width="1919" height="1115" alt="English assignment" src="https://github.com/user-attachments/assets/2becd296-973d-42fa-bf9d-29bc07ae1fbb" /># AI-Based Automated Assignment Generator
+# AI-Based Automated Assignment Generator
 
 ## Project Description
 This project is an AI-based automated assignment generator that:
@@ -25,7 +25,7 @@ This project is an AI-based automated assignment generator that:
    ## Application Preview
 
 ### GUI Interface
-![GUI](screenshots/gui.png)
+![GUI](screenshots/GUI.png)
 
 ### Processing
 ![Processing](screenshots/processing.png)
