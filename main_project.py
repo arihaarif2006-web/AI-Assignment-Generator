@@ -10,16 +10,8 @@ from googletrans import Translator
 import tkinter as tk
 from tkinter import messagebox
 
-# ================================
-# SETTINGS
-# ================================
-
 BASE_PATH = r"A:\ML_Project"
 os.makedirs(BASE_PATH, exist_ok=True)
-
-# ================================
-# GOOGLE SEARCH FUNCTION
-# ================================
 
 def get_google_urls(query, num_results=10):
     urls = []
@@ -54,11 +46,6 @@ def get_google_urls(query, num_results=10):
     
     return urls
 
-
-# ================================
-# SCRAPE CONTENT
-# ================================
-
 def clean_text(text):
     return re.sub(r'\s+', ' ', text).strip()
 
@@ -86,10 +73,6 @@ def scrape_page(url):
     
     return text_data
 
-# ================================
-# GENERATE ASSIGNMENT
-# ================================
-
 def generate_assignment(topic, content):
     paragraphs = content.split("\n")
     chunk = max(1, len(paragraphs)//5)
@@ -115,10 +98,6 @@ def generate_assignment(topic, content):
     
     return intro, sections, conclusion
 
-# ================================
-# MAIN PROCESS FUNCTION
-# ================================
-
 def start_process():
     topic = topic_entry.get().strip()
     
@@ -130,26 +109,22 @@ def start_process():
     
     def run():
         try:
-            # Step 1: Get URLs
             urls = get_google_urls(topic)
             
             if not urls:
                 messagebox.showerror("Error", "No URLs found.")
                 return
             
-            # Save URLs
             with open(os.path.join(BASE_PATH, "urls.txt"), "w", encoding="utf-8") as f:
                 for url in urls:
                     f.write(url + "\n")
             
-            # Step 2: Scrape content
             combined_content = ""
             for url in urls:
                 combined_content += scrape_page(url) + "\n"
             
             combined_content = combined_content[:20000]
             
-            # Step 3: Generate English assignment
             intro, sections, conclusion = generate_assignment(topic, combined_content)
             
             doc = Document()
@@ -169,7 +144,6 @@ def start_process():
             english_path = os.path.join(BASE_PATH, f"{topic}_English.docx")
             doc.save(english_path)
             
-            # Step 4: Translate to Urdu
             translator = Translator()
             urdu_doc = Document()
             
@@ -193,10 +167,6 @@ def start_process():
     
     threading.Thread(target=run).start()
 
-# ================================
-# GUI DESIGN
-# ================================
-
 root = tk.Tk()
 root.title("Automatic Assignment Generator")
 root.geometry("500x250")
@@ -218,3 +188,4 @@ status_label = tk.Label(root, text="")
 status_label.pack()
 
 root.mainloop()
+
