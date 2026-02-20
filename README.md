@@ -22,6 +22,13 @@ This project is an AI-based automated assignment generator that:
 2. Run:
    python main_project.py
 
+## AI Concepts Used
+- Prompt-based automation
+- NLP summarization
+- Machine translation
+- Web scraping
+- Human-in-the-loop AI workflow
+
    ## Application Preview
 
 ### GUI Interface
